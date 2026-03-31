@@ -77,6 +77,21 @@ public class UserManagementService {
         return UserResponse.fromEntity(userAccountRepository.save(user));
     }
 
+    @Transactional(readOnly = true)
+    public UserResponse getUserById(Long userId) {
+        UserAccount user = userAccountRepository.findById(userId)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found: " + userId));
+        return UserResponse.fromEntity(user);
+    }
+
+    @Transactional
+    public UserResponse updateAvailability(Long userId, boolean available) {
+        UserAccount user = userAccountRepository.findById(userId)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found: " + userId));
+        user.setAvailable(available);
+        return UserResponse.fromEntity(userAccountRepository.save(user));
+    }
+
     @Transactional
     public void deleteUser(Long userId) {
         UserAccount user = userAccountRepository.findById(userId)

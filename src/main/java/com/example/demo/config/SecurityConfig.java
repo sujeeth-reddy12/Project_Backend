@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/manifest.json", "/favicon.ico", "/static/**", "/robots.txt").permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                .requestMatchers("/api/staff/**").hasRole("STAFF")
+                .requestMatchers("/api/staff/**").hasAnyRole("STAFF", "ADMIN")
                 .requestMatchers("/api/complaints/**").authenticated()
                 .requestMatchers("/api/reports/**").hasAnyRole("ADMIN", "STAFF")
                 .requestMatchers("/actuator/**").permitAll()

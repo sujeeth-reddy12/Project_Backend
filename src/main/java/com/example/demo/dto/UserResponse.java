@@ -9,6 +9,7 @@ public class UserResponse {
     private String name;
     private String email;
     private Role role;
+    private boolean available;
 
     public static UserResponse fromEntity(UserAccount user) {
         UserResponse response = new UserResponse();
@@ -16,6 +17,7 @@ public class UserResponse {
         response.setName(user.getName());
         response.setEmail(user.getEmail());
         response.setRole(user.getRole());
+        response.setAvailable(user.isAvailable());
         return response;
     }
 
@@ -41,6 +43,14 @@ public class UserResponse {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public Role getRole() {

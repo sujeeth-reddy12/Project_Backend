@@ -34,6 +34,9 @@ public class UserAccount {
     @Column(nullable = false)
     private Role role;
 
+    @Column(nullable = false, columnDefinition = "boolean default true")
+    private boolean available = true;
+
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
@@ -83,6 +86,14 @@ public class UserAccount {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public LocalDateTime getCreatedAt() {
